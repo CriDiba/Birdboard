@@ -9,6 +9,7 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
     },
+
     colors: {
       transparent: 'transparent',
 
@@ -125,7 +126,16 @@ module.exports = {
         800: '#97266d',
         900: '#702459',
       },
+
+      default: 'var(--text-default-color)',
+      accent: 'var(--text-accent-color)',
+      'accent-light': 'var(--text-accent-light-color)',
+      muted: 'var(--text-muted-color)',
+      'muted-light': 'var(--text-muted-light-color)',
+
     },
+
+
     spacing: {
       px: '1px',
       '0': '0',
@@ -147,7 +157,18 @@ module.exports = {
       '56': '14rem',
       '64': '16rem',
     },
-    backgroundColor: theme => theme('colors'),
+
+    //backgroundColor: theme => theme('colors'),
+
+    backgroundColor: theme => ({
+      //...theme('colors'),
+      page: 'var(--page-background-color)',
+      card: 'var(--card-background-color)',
+      button: 'var(--button-background-color)',
+      header: 'var(--header-background-color)'
+    }),
+
+
     backgroundPosition: {
       bottom: 'bottom',
       center: 'center',
@@ -599,6 +620,8 @@ module.exports = {
       '1000': '1000ms',
     },
   },
+
+
   variants: {
     accessibility: ['responsive', 'focus'],
     alignContent: ['responsive'],
@@ -689,6 +712,8 @@ module.exports = {
     transitionTimingFunction: ['responsive'],
     transitionDuration: ['responsive'],
   },
+
   corePlugins: {},
+
   plugins: [],
 }
