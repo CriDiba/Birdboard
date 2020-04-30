@@ -33,6 +33,18 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
+    /**
+     * Add a task to the project.
+     *
+     * @param array $tasks
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function addTasks($tasks)
+    {
+        return $this->tasks()->createMany($tasks);
+    }
+    
+
     public function invite(User $user)
     {
         return $this->members()->attach($user);

@@ -48,21 +48,32 @@
                             <!-- Authentication Links -->
                             @guest
                                 
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="text-accent mr-4 no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 
                                 @if (Route::has('register'))
                                     
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="text-accent no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     
                                 @endif
                             @else
 
                                 <theme-switcher></theme-switcher>
                                 
-                                <a class="flex items-center text-default no-underline text-sm" href="#" role="button" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img width="35" class="rounded-full mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
-                                    {{ Auth::user()->name }}
-                                </a>
+                                <dropdown align="right" width="200px">
+                                    <template v-slot:trigger>
+                                        <button class="flex items-center text-default no-underline text-sm focus:outline-none" v-pre>
+                                            <img width="35" class="rounded-full mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
+                                            
+                                            {{ auth()->user()->name }}
+                                        </button>
+                                    </template>
+                                    
+                                    <form id="logout-form" method="POST" action="/logout">
+                                        @csrf
+                                        
+                                        <button type="submit" class="dropdown-menu-link w-full text-left">Logout</button>
+                                    </form>
+                                </dropdown>
                                 
                             @endguest
                         </div>
@@ -71,7 +82,7 @@
             </div>
         </nav>
 
-        <main class="py-4 mx-auto container">
+        <main class="container mx-auto py-6">
             @yield('content')
         </main>
     </div>
